@@ -4,7 +4,7 @@ import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { SimpleFormModal } from './simple-form-modal';
-import { getAgriImageUrl, handleImageError } from '../utils/image-helper';
+import { getProductImageUrl, handleImageError } from '../utils/image-helper';
 
 // Import local premium assets
 import heroDatePalms from '../../assets/hero_date_palms.png';
@@ -480,7 +480,7 @@ export const MarketplaceGrid = () => {
               >
                 <div className="h-40 relative overflow-hidden bg-[#f0f4f0]">
                   <img 
-                    src={getAgriImageUrl(product.category === 'بذور' ? 'seeds' : product.category === 'أسمدة' ? 'fertilizer' : product.category === 'مبيدات' ? 'product' : product.category === 'ري' ? 'irrigation' : 'product')} 
+                    src={getProductImageUrl(product.name)} 
                     alt={product.name}
                     loading="lazy"
                     onError={handleImageError}

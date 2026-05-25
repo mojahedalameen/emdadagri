@@ -12,7 +12,7 @@ import * as LucideIcons from "lucide-react";
 import { Link, useParams } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { SimpleFormModal } from "../components/simple-form-modal";
-import { getAgriImageUrl, handleImageError } from "../utils/image-helper";
+import { getProductImageUrl, getConsultantImageUrl, getSupplierImageUrl, handleImageError } from "../utils/image-helper";
 
 import wheatSeeds from "../../assets/wheat_seeds.png";
 import organicFertilizer from "../../assets/organic_fertilizer.png";
@@ -243,7 +243,7 @@ export const Consultations = () => {
       <div className="flex items-center gap-6 mb-8 mt-4">
          <div className="w-24 h-24 bg-[#f0f4f0] rounded-full overflow-hidden border-4 border-white shadow-md shrink-0 group-hover:scale-105 transition-transform">
             <img 
-              src={getAgriImageUrl('crop')} 
+              src={getConsultantImageUrl(advisor.spec)} 
               alt={advisor.name}
               loading="lazy"
               onError={handleImageError}
@@ -406,7 +406,7 @@ export const Marketplace = () => {
                 >
                   <div className="h-48 relative overflow-hidden bg-[#f0f4f0]">
                     <img 
-                      src={getAgriImageUrl(product.category === 'بذور' ? 'seeds' : product.category === 'أسمدة' ? 'fertilizer' : product.category === 'مبيدات' ? 'product' : product.category === 'ري' ? 'irrigation' : 'product')} 
+                      src={getProductImageUrl(product.name)} 
                       alt={product.name}
                       loading="lazy"
                       onError={handleImageError}
@@ -492,7 +492,7 @@ export const Suppliers = () => {
             >
               <div className="w-20 h-20 bg-[#f0f4f0] rounded-2xl overflow-hidden mb-8 border border-[#E7E7E2] shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform flex items-center justify-center">
                 <img 
-                  src={getAgriImageUrl('warehouse')} 
+                  src={getSupplierImageUrl(company.name)} 
                   alt={company.name}
                   loading="lazy"
                   onError={handleImageError}
