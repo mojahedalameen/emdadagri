@@ -30,8 +30,11 @@ export const getProductImageUrl = (name: string): string => {
   if (n.includes("بذور طماطم") || n.includes("طماطم هجين") || n.includes("بذور برسيم")) {
     return smartGreenhouse;
   }
-  if (n.includes("سماد يوريا") || n.includes("يوريا سائل") || n.includes("مغذي ورقي")) {
-    return organicFertilizer;
+  if (n.includes("سماد يوريا") || n.includes("يوريا سائل")) {
+    return "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=600&q=80"; // Rich compost/fertilizer soil scene
+  }
+  if (n.includes("مغذي ورقي")) {
+    return "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80"; // Foliar nutrients green leaves scene
   }
   if (n.includes("صناديق حركية") || n.includes("مقص تقليم")) {
     return "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80";
