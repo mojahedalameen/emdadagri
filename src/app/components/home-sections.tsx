@@ -71,11 +71,11 @@ export const Hero = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/marketplace" className="inline-flex items-center justify-center px-7 py-3.5 bg-[#1F5F2C] text-white rounded-full font-bold hover:bg-[#15411e] active:scale-95 transition-all shadow-lg shadow-[#1F5F2C]/20 group text-[15px]">
+                <Link to="/marketplace" className="inline-flex items-center justify-center px-7 py-3.5 btn-premium-primary text-white rounded-full font-bold group text-[15px]">
                   تصفح المدخلات الزراعية
                   <LucideIcons.ArrowLeft className="mr-2 w-5 h-5 group-hover:-translate-x-1.5 transition-transform" />
                 </Link>
-                <Link to="/consultations" className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-[#1D2A1F] border border-[#E7E7E2] rounded-full font-bold text-[15px] hover:bg-[#F7F8F5] hover:border-[#1F5F2C] active:scale-95 transition-all shadow-sm">
+                <Link to="/consultations" className="inline-flex items-center justify-center px-7 py-3.5 btn-premium-secondary rounded-full font-bold text-[15px]">
                   طلب استشارة
                 </Link>
               </div>
@@ -475,7 +475,7 @@ export const MarketplaceGrid = () => {
               <Link 
                 to={`/product/${product.id}`} 
                 key={product.id}
-                className="group flex flex-col bg-white rounded-[1.5rem] border border-[#E7E7E2] overflow-hidden hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] transition-all duration-500"
+                className="group flex flex-col premium-card overflow-hidden"
               >
                 <div className={`h-40 flex items-center justify-center relative ${styles.bg} transition-colors duration-500`}>
                   <div className="w-16 h-16 rounded-2xl bg-white border border-[#E7E7E2]/60 shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">

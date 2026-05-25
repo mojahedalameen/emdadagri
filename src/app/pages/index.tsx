@@ -223,7 +223,7 @@ export const Consultations = () => {
 
   const ConsultantCard = ({ advisor }: { advisor: any }) => (
     <div
-      className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-[#E7E7E2] hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] transition-all group relative overflow-hidden"
+      className="premium-card p-10 rounded-[2.5rem] relative overflow-hidden flex flex-col"
     >
       {advisor.type === 'free' ? (
         <div className="absolute top-6 left-6 z-10">
@@ -269,7 +269,7 @@ export const Consultations = () => {
 
       <button 
         onClick={() => setShowModal(true)}
-        className="w-full py-4 bg-[#1F5F2C] text-white rounded-full font-bold text-[16px] hover:bg-[#15411e] active:bg-[#0f2d15] active:scale-95 transition-all shadow-lg shadow-[#1F5F2C]/10 flex items-center justify-center gap-3"
+        className="w-full py-4 btn-premium-primary text-white rounded-full font-bold text-[16px] flex items-center justify-center gap-3"
       >
         <LucideIcons.MessageSquare className="w-5 h-5" />
         طلب استشارة فورية
@@ -395,7 +395,7 @@ export const Marketplace = () => {
                 <Link
                   to={`/product/${product.id}`}
                   key={product.id}
-                  className="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-[#E7E7E2] flex flex-col group hover:shadow-2xl hover:-translate-y-1 active:scale-[0.99] transition-all duration-500"
+                  className="premium-card overflow-hidden flex flex-col group"
                 >
                   <div className={`h-48 flex items-center justify-center relative ${styles.bg} transition-colors duration-500`}>
                     <div className="w-16 h-16 rounded-2xl bg-white border border-[#E7E7E2]/60 shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">

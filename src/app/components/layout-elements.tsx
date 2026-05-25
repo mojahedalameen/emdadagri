@@ -10,7 +10,7 @@ const LOGO_URL = "https://i.imgur.com/mlkpAl4.png";
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-[#E7E7E2] shadow-sm" dir="rtl">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-[#E7E7E2]/50 shadow-[0_2px_20px_-5px_rgba(29,42,31,0.03)]" dir="rtl">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between py-3 md:py-4">
           <div className="flex items-center gap-8">

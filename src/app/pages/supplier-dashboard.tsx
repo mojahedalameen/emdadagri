@@ -76,7 +76,7 @@ export const SupplierDashboard = () => {
              {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {kpis.map((stat, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-[2rem] shadow-sm border border-[#E7E7E2] hover:shadow-md transition-all">
+                <div key={idx} className="premium-card p-8 rounded-[2rem]">
                   <div className={`${stat.bg} ${stat.color} w-12 h-12 rounded-2xl flex items-center justify-center mb-6`}>
                      {stat.icon}
                   </div>

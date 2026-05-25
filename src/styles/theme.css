@@ -84,3 +84,78 @@ body.modal-open {
   margin-bottom: 24px;
   font-weight: bold;
 }
+
+/* --- Premium Aesthetics --- */
+
+/* Glassmorphism Cards */
+.premium-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(231, 231, 226, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(29, 42, 31, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(31, 95, 44, 0.12);
+  border-color: rgba(31, 95, 44, 0.25);
+}
+
+/* Premium Buttons */
+.btn-premium-primary {
+  background: linear-gradient(135deg, #1F5F2C, #2D5A27);
+  color: white;
+  box-shadow: 0 8px 22px -6px rgba(31, 95, 44, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-premium-primary:hover {
+  box-shadow: 0 12px 28px -4px rgba(31, 95, 44, 0.45);
+  transform: translateY(-1px) scale(1.01);
+  background: linear-gradient(135deg, #1A5125, #244C20);
+}
+
+.btn-premium-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-premium-secondary {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(231, 231, 226, 0.8);
+  color: #1D2A1F;
+  box-shadow: 0 4px 12px rgba(29, 42, 31, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-premium-secondary:hover {
+  border-color: #1F5F2C;
+  color: #1F5F2C;
+  background: white;
+  transform: translateY(-1px);
+}
+
+/* Text Gradients */
+.text-gradient-green {
+  background: linear-gradient(135deg, #1D2A1F 20%, #1F5F2C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C8A646, #917226);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Decorative Background Glow Orbs */
+.bg-blur-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
