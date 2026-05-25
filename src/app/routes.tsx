@@ -1,10 +1,22 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import { useEffect } from "react";
+import { createBrowserRouter, Outlet, useLocation } from "react-router";
 import { Header, Footer } from "./components/layout-elements";
 import { Home, Consultations, Marketplace, Suppliers, ProductDetail, Register, SupplierLogin, MyRequests } from "./pages";
 import { SupplierDashboard } from "./pages/supplier-dashboard";
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const Root = () => (
   <div className="flex flex-col min-h-screen">
+    <ScrollToTop />
     <Header />
     <main className="flex-grow">
       <Outlet />
@@ -58,6 +70,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/supplier-dashboard",
-    element: <SupplierDashboard />,
+    element: (
+      <>
+        <ScrollToTop />
+        <SupplierDashboard />
+      </>
+    ),
   },
 ]);
