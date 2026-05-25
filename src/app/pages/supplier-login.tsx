@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link, useNavigate } from 'react-router';
+import logoImg from '@/imports/logo-removebg-preview.png';
 
 export const SupplierLogin = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export const SupplierLogin = () => {
           <div className="flex flex-col items-center text-center mb-10">
             <Link to="/" className="mb-6 block transition-transform hover:scale-105 active:scale-95">
               <img 
-                src="https://i.imgur.com/mlkpAl4.png" 
+                src={logoImg} 
                 alt="إمداد" 
                 className="h-16 w-auto object-contain mx-auto"
               />

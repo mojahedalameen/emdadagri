@@ -9,6 +9,7 @@ export const SupplierDashboard = () => {
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('الرئيسية');
   const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem("isLoggedIn") === "true");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isLoggedIn) {
     return (
@@ -480,18 +481,32 @@ export const SupplierDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F8F5] flex overflow-hidden" dir="rtl">
+    <div className="min-h-screen bg-[#F7F8F5] flex overflow-hidden relative" dir="rtl">
+      {/* Sidebar Mobile Backdrop */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-72 bg-[#1D2A1F] text-white flex flex-col shrink-0">
-        <div className="p-8 border-b border-white/10">
+      <aside className={`fixed inset-y-0 right-0 z-50 w-72 bg-[#1D2A1F] text-white flex flex-col shrink-0 transition-transform duration-300 lg:static lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="p-8 border-b border-white/10 flex items-center justify-between shrink-0">
            <ImageWithFallback 
             src={logo} 
             alt="إمداد" 
             className="h-10 w-auto object-contain brightness-0 invert"
           />
+          <button 
+            onClick={() => setIsSidebarOpen(false)}
+            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-xl"
+          >
+            <LucideIcons.X className="w-5 h-5" />
+          </button>
         </div>
         
-        <div className="p-6 flex-grow">
+        <div className="p-6 flex-grow overflow-y-auto no-scrollbar">
           <p className="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-6 px-4 text-right">لوحة التحكم</p>
           <nav className="space-y-2">
             {[
@@ -507,7 +522,10 @@ export const SupplierDashboard = () => {
               return (
                 <button 
                   key={idx} 
-                  onClick={() => setActiveTab(item.label)}
+                  onClick={() => {
+                    setActiveTab(item.label);
+                    setIsSidebarOpen(false);
+                  }}
                   className={`w-full flex items-center gap-4 px-4 py-4 rounded-[14px] transition-all ${isActive ? 'bg-[#1F5F2C] text-white shadow-lg' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
                 >
                   <Icon className="w-5 h-5" />
@@ -515,10 +533,22 @@ export const SupplierDashboard = () => {
                 </button>
               );
             })}
+
+            {/* Logout Button */}
+            <button 
+              onClick={() => {
+                localStorage.removeItem("isLoggedIn");
+                setIsLoggedIn(false);
+              }}
+              className="w-full flex items-center gap-4 px-4 py-4 rounded-[14px] transition-all text-red-400 hover:bg-red-500/10 hover:text-red-300 mt-6"
+            >
+              <LucideIcons.LogOut className="w-5 h-5" />
+              <span className="font-bold text-[15px]">تسجيل الخروج</span>
+            </button>
           </nav>
         </div>
 
-        <div className="p-6 border-t border-white/10">
+        <div className="p-6 border-t border-white/10 shrink-0">
            <div className="bg-[#1F5F2C]/30 p-6 rounded-[1.5rem] border border-white/5 text-right">
               <p className="text-[13px] font-bold mb-2">الدعم الفني للموردين</p>
               <p className="text-[12px] text-gray-400 mb-4">متواجدون لخدمتك على مدار الساعة</p>
@@ -529,8 +559,14 @@ export const SupplierDashboard = () => {
 
       {/* Main Content */}
       <main className="flex-grow flex flex-col h-screen overflow-y-auto">
-        <header className="h-20 bg-white border-b border-[#E7E7E2] px-10 flex items-center justify-between shrink-0 sticky top-0 z-20">
-          <div className="flex items-center gap-6 flex-grow max-w-xl">
+        <header className="h-20 bg-white border-b border-[#E7E7E2] px-6 lg:px-10 flex items-center justify-between shrink-0 sticky top-0 z-20">
+          <div className="flex items-center gap-4 flex-grow max-w-xl">
+             <button 
+               onClick={() => setIsSidebarOpen(true)}
+               className="lg:hidden p-2 text-[#1D2A1F] hover:bg-[#F7F8F5] rounded-xl transition-all mr-2 shrink-0"
+             >
+               <LucideIcons.Menu className="w-6 h-6" />
+             </button>
              <div className="relative w-full">
                 <LucideIcons.Search className="absolute right-4 top-1/2 -translate-y-1/2 text-[#667064] w-4 h-4" />
                 <input 
@@ -541,8 +577,8 @@ export const SupplierDashboard = () => {
              </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3 px-4 py-2 bg-green-50 rounded-full border border-green-100">
+          <div className="flex items-center gap-4 lg:gap-6 shrink-0">
+            <div className="hidden sm:flex items-center gap-3 px-4 py-2 bg-green-50 rounded-full border border-green-100">
                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                <span className="text-[12px] font-bold text-green-700 uppercase">حساب موثق</span>
             </div>
@@ -552,8 +588,8 @@ export const SupplierDashboard = () => {
               <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full font-bold border-2 border-white">3</span>
             </button>
             
-            <div className="flex items-center gap-4 pr-6 border-r border-[#E7E7E2]">
-              <div className="text-right">
+            <div className="flex items-center gap-3 pr-4 border-r border-[#E7E7E2]">
+              <div className="hidden md:block text-right">
                 <p className="text-[14px] font-bold text-[#1D2A1F]">شركة نماء الزراعية</p>
                 <p className="text-[12px] text-[#667064]">مورد بلاتيني</p>
               </div>

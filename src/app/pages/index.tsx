@@ -104,6 +104,13 @@ export const ProductDetail = () => {
   return (
     <div className="py-12 bg-[#F7F8F5]" dir="rtl">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
+        <Link 
+          to="/marketplace" 
+          className="inline-flex items-center gap-2 text-[#1F5F2C] hover:text-[#15411e] font-bold mb-6 group transition-colors"
+        >
+          <LucideIcons.ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <span>العودة إلى سوق المدخلات</span>
+        </Link>
         <div className="bg-white rounded-[2rem] shadow-xl border border-[#E7E7E2] overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Image Gallery */}

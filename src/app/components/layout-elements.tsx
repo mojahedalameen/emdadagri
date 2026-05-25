@@ -207,12 +207,12 @@ export const Footer = () => {
               منصة إمداد هي المرجع الأول للمزارع السعودي، نجمع بين الخبرة الزراعية وأحدث التقنيات لتمكين القطاع الزراعي في المملكة العربية السعودية.
             </p>
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full border border-[#C8A646]/30 flex items-center justify-center hover:bg-[#C8A646]/10 cursor-pointer transition-all">
+              <a href="https://imdad.sa" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[#C8A646]/30 flex items-center justify-center hover:bg-[#C8A646]/10 cursor-pointer transition-all">
                 <Globe className="w-5 h-5 text-[#C8A646]" />
-              </div>
-              <div className="w-10 h-10 rounded-full border border-[#C8A646]/30 flex items-center justify-center hover:bg-[#C8A646]/10 cursor-pointer transition-all">
+              </a>
+              <a href="https://imdad.sa" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[#C8A646]/30 flex items-center justify-center hover:bg-[#C8A646]/10 cursor-pointer transition-all">
                 <ShieldCheck className="w-5 h-5 text-[#C8A646]" />
-              </div>
+              </a>
             </div>
           </div>
           
@@ -231,9 +231,9 @@ export const Footer = () => {
             <h4 className="font-bold text-[16px] mb-8 text-[#C8A646]">للموردين</h4>
             <ul className="space-y-4 text-[14px] text-[#667064]">
               <li><Link to="/supplier-dashboard" className="hover:text-white transition-colors">لوحة المورد</Link></li>
-              <li><Link to="#" className="hover:text-white transition-colors">إضافة منتجات</Link></li>
-              <li><Link to="#" className="hover:text-white transition-colors">سياسة البيع</Link></li>
-              <li><Link to="#" className="hover:text-white transition-colors">دليل التوثيق</Link></li>
+              <li><Link to="/supplier-dashboard" className="hover:text-white transition-colors">إضافة منتجات</Link></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); alert("صفحة سياسة البيع ستكون متوفرة قريباً!"); }} className="hover:text-white transition-colors">سياسة البيع</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); alert("دليل التوثيق سيكون متوفراً قريباً!"); }} className="hover:text-white transition-colors">دليل التوثيق</a></li>
             </ul>
           </div>
 
@@ -262,9 +262,9 @@ export const Footer = () => {
             <span>© 2026 جميع الحقوق محفوظة لشركة إمداد الزراعية</span>
           </div>
           <div className="flex gap-8">
-            <Link to="#" className="hover:text-[#C8A646]">سياسة الخصوصية</Link>
-            <Link to="#" className="hover:text-[#C8A646]">اتفاقية الاستخدام</Link>
-            <Link to="#" className="hover:text-[#C8A646]">خريطة الموقع</Link>
+            <a href="#" onClick={(e) => { e.preventDefault(); alert("سياسة الخصوصية ستكون متوفرة قريباً!"); }} className="hover:text-[#C8A646]">سياسة الخصوصية</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); alert("اتفاقية الاستخدام ستكون متوفرة قريباً!"); }} className="hover:text-[#C8A646]">اتفاقية الاستخدام</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); alert("خريطة الموقع ستكون متوفرة قريباً!"); }} className="hover:text-[#C8A646]">خريطة الموقع</a>
           </div>
         </div>
       </div>
