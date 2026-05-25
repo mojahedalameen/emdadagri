@@ -2,7 +2,7 @@ import image_logo_removebg_preview_1 from '@/imports/logo-removebg-preview-1.png
 import image_logo_removebg_preview from '@/imports/logo-removebg-preview.png'
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router';
-import { User, Briefcase, PhoneCall, Globe, ShieldCheck, Menu, X } from 'lucide-react';
+import { User, Briefcase, PhoneCall, Globe, ShieldCheck, Menu, X, ClipboardList } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import logoImg from "figma:asset/image-4.png"; // Placeholder in case fallback is needed
 const LOGO_URL = "https://i.imgur.com/mlkpAl4.png";
@@ -82,6 +82,13 @@ export const Header = () => {
           {/* Left: Actions */}
           <div className="flex items-center gap-4">
             <Link 
+              to="/my-requests" 
+              className="hidden sm:flex items-center gap-2 px-5 py-2 text-[13px] md:text-[14px] font-bold text-[#667064] hover:text-[#1F5F2C] bg-[#F7F8F5] hover:bg-[#E7E7E2] rounded-full transition-all shadow-sm"
+            >
+              <ClipboardList className="w-4 h-4" />
+              <span>طلباتي</span>
+            </Link>
+            <Link 
               to="/register" 
               className="hidden sm:flex items-center gap-2 px-5 py-2 text-[13px] md:text-[14px] font-bold text-[#1F5F2C] border border-[#1F5F2C] rounded-full hover:bg-[#1F5F2C] hover:text-white active:scale-95 transition-all shadow-sm"
             >
@@ -141,6 +148,14 @@ export const Header = () => {
               </NavLink>
             </nav>
             <div className="flex flex-col sm:hidden gap-3 pt-4 border-t border-[#E7E7E2]">
+              <Link 
+                to="/my-requests" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 px-5 py-3 text-[14px] font-bold text-[#667064] bg-[#F7F8F5] rounded-full hover:text-[#1F5F2C] transition-all shadow-sm"
+              >
+                <ClipboardList className="w-4 h-4" />
+                <span>طلباتي</span>
+              </Link>
               <Link 
                 to="/register" 
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -208,6 +223,7 @@ export const Footer = () => {
               <li><Link to="/marketplace" className="hover:text-white transition-colors">المدخلات الزراعية</Link></li>
               <li><Link to="/suppliers" className="hover:text-white transition-colors">دليل الشركات</Link></li>
               <li><Link to="/consultations" className="hover:text-white transition-colors">الاستشارات</Link></li>
+              <li><Link to="/my-requests" className="hover:text-white transition-colors">طلباتي</Link></li>
             </ul>
           </div>
 

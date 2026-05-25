@@ -209,6 +209,20 @@ export const ProductDetail = () => {
 
 export const Consultations = () => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedEngineer, setSelectedEngineer] = useState<any>(null);
+  const [requestedEngineers, setRequestedEngineers] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('consultationRequests') || '[]');
+    setRequestedEngineers(saved.map((req: any) => req.engineerName));
+  }, []);
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    const saved = JSON.parse(localStorage.getItem('consultationRequests') || '[]');
+    setRequestedEngineers(saved.map((req: any) => req.engineerName));
+  };
+
 
   const imdadEngineers = [
     { name: "م. فهد", spec: "خبير محاصيل القمح", city: "القصيم", exp: "12 سنة", status: "متاح الآن", type: "free" },
@@ -275,11 +289,15 @@ export const Consultations = () => {
       </div>
 
       <button 
-        onClick={() => setShowModal(true)}
-        className="w-full py-4 btn-premium-primary text-white rounded-full font-bold text-[16px] flex items-center justify-center gap-3"
+        onClick={() => {
+          setSelectedEngineer(advisor);
+          setShowModal(true);
+        }}
+        disabled={requestedEngineers.includes(advisor.name)}
+        className={`w-full py-4 rounded-full font-bold text-[16px] flex items-center justify-center gap-3 transition-all ${requestedEngineers.includes(advisor.name) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'btn-premium-primary text-white'}`}
       >
-        <LucideIcons.MessageSquare className="w-5 h-5" />
-        طلب استشارة فورية
+        {!requestedEngineers.includes(advisor.name) && <LucideIcons.MessageSquare className="w-5 h-5" />}
+        {requestedEngineers.includes(advisor.name) ? '✅ تم إرسال طلبك' : 'طلب استشارة فورية'}
       </button>
     </div>
   );
@@ -329,7 +347,8 @@ export const Consultations = () => {
           title="طلب استشارة زراعية"
           subtitle="املأ البيانات التالية ليتواصل معك المهندس المختص"
           type="consultation"
-          onClose={() => setShowModal(false)}
+          engineerInfo={{...selectedEngineer, engineerImage: getConsultantImageUrl(selectedEngineer.spec)}}
+          onClose={handleModalClose}
         />
       )}
     </div>
@@ -461,6 +480,7 @@ export const Marketplace = () => {
 
 export * from "./register";
 export * from "./supplier-login";
+export * from "./my-requests";
 
 export const Suppliers = () => {
   const directory = [

@@ -7,12 +7,15 @@ interface FormProps {
   subtitle: string;
   productName?: string;
   type: 'purchase' | 'consultation';
+  engineerInfo?: any;
   onClose: () => void;
 }
 
-export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }: FormProps) => {
+export const SimpleFormModal = ({ title, subtitle, productName, type, engineerInfo, onClose }: FormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [topic, setTopic] = useState('استشارة عامة');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     document.body.classList.add('modal-open');
@@ -30,6 +33,28 @@ export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }:
     }, 1200);
   };
 
+  const handleClose = () => {
+    if (isSubmitted && type === 'consultation' && engineerInfo) {
+      const existing = JSON.parse(localStorage.getItem('consultationRequests') || '[]');
+      localStorage.setItem('consultationRequests', JSON.stringify([
+        ...existing,
+        {
+          id: Date.now(),
+          engineerName: engineerInfo.name,
+          specialty: engineerInfo.spec,
+          engineerImage: engineerInfo.engineerImage,
+          consultationType: engineerInfo.type === 'free' ? 'مجانية' : 'مدفوعة',
+          price: engineerInfo.type === 'free' ? '0' : engineerInfo.price,
+          topic: topic,
+          description: description,
+          status: 'قيد المراجعة',
+          createdAt: new Date().toISOString()
+        }
+      ]));
+    }
+    onClose();
+  };
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" dir="rtl">
       <motion.div 
@@ -38,7 +63,7 @@ export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }:
         className="bg-white w-full max-w-lg rounded-[2rem] shadow-2xl relative flex flex-col max-h-[85vh] modal-content"
       >
         <button 
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 left-4 p-2 bg-[#F7F8F5] rounded-full hover:bg-white hover:shadow-md transition-all active:scale-90 z-20"
         >
           <LucideIcons.X className="w-5 h-5 text-[#667064]" />
@@ -106,7 +131,11 @@ export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }:
                     <>
                       <div className="space-y-1">
                         <label className="text-[12px] font-bold text-[#1D2A1F] block mr-2">نوع الاستشارة</label>
-                        <select className="w-full px-4 py-2.5 bg-[#F7F8F5] border-2 border-transparent rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right appearance-none text-[13px]">
+                        <select 
+                          value={topic}
+                          onChange={(e) => setTopic(e.target.value)}
+                          className="w-full px-4 py-2.5 bg-[#F7F8F5] border-2 border-transparent rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right appearance-none text-[13px]"
+                        >
                           <option>استشارة عامة</option>
                           <option>أمراض ومكافحة آفات</option>
                           <option>أنظمة ري حديثة</option>
@@ -116,6 +145,8 @@ export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }:
                       <div className="space-y-1">
                         <label className="text-[12px] font-bold text-[#1D2A1F] block mr-2">وصف مختصر للمشكلة</label>
                         <textarea 
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
                           placeholder="اشرح لنا طبيعة المشكلة باختصار..."
                           rows={2.5}
                           className="w-full px-4 py-2.5 bg-[#F7F8F5] border-2 border-transparent rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right resize-none text-[13px]"
@@ -151,17 +182,19 @@ export const SimpleFormModal = ({ title, subtitle, productName, type, onClose }:
               <div className="w-14 h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-5">
                 <LucideIcons.CheckCircle2 className="w-7 h-7" />
               </div>
-              <h2 className="text-xl font-bold text-[#1D2A1F] mb-3">تم استلام طلبك بنجاح</h2>
+              <h2 className="text-xl font-bold text-[#1D2A1F] mb-3">
+                {type === 'purchase' ? 'تم استلام طلبك بنجاح' : 'تم إرسال طلبك بنجاح!'}
+              </h2>
               <p className="text-[14px] text-[#667064] mb-6 leading-relaxed">
                 {type === 'purchase' 
                   ? "تمت إضافة طلبك بنجاح، وسيتم التواصل معك لاستكمال عملية الشراء."
-                  : "تم استلام طلبك بنجاح، وسيتم التواصل معك قريباً."}
+                  : `سيتواصل معك ${engineerInfo?.name || 'المهندس'} خلال 10 دقائق على رقم الجوال الذي أدخلته`}
               </p>
               <button 
-                onClick={onClose}
+                onClick={handleClose}
                 className="w-full py-3 bg-[#1F5F2C] text-white rounded-full font-bold text-[14px] hover:bg-[#15411e] transition-all"
               >
-                حسناً، شكراً لك
+                حسناً
               </button>
             </motion.div>
           )}

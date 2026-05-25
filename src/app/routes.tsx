@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet } from "react-router";
 import { Header, Footer } from "./components/layout-elements";
-import { Home, Consultations, Marketplace, Suppliers, ProductDetail, Register, SupplierLogin } from "./pages";
+import { Home, Consultations, Marketplace, Suppliers, ProductDetail, Register, SupplierLogin, MyRequests } from "./pages";
 import { SupplierDashboard } from "./pages/supplier-dashboard";
 
 const Root = () => (
@@ -45,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <SupplierLogin />,
+      },
+      {
+        path: "my-requests",
+        element: <MyRequests />,
       },
       {
         path: "*",
