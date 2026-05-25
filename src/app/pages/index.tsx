@@ -490,16 +490,6 @@ export const Suppliers = () => {
               key={i}
               className="p-8 border border-[#E7E7E2] rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 active:scale-[0.99] transition-all flex flex-col items-center text-center group bg-[#F7F8F5]/50"
             >
-              <div className="w-20 h-20 bg-[#f0f4f0] rounded-2xl overflow-hidden mb-8 border border-[#E7E7E2] shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform flex items-center justify-center">
-                <img 
-                  src={getSupplierImageUrl(company.name)} 
-                  alt={company.name}
-                  loading="lazy"
-                  onError={handleImageError}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F5F2C]/10 rounded-full mb-4">
                  <LucideIcons.Shield className="w-3 h-3 text-[#1F5F2C]" />
                  <span className="text-[11px] font-bold text-[#1F5F2C] uppercase tracking-wider">مورد معتمد</span>
