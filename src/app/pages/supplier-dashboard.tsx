@@ -1,12 +1,33 @@
 import React, { useState } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { Link } from 'react-router';
 import logo from "figma:asset/image-4.png";
 import banner from "figma:asset/image-5.png";
 
 export const SupplierDashboard = () => {
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('الرئيسية');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem("isLoggedIn") === "true");
+
+  if (!isLoggedIn) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#F7F8F5] p-6" dir="rtl">
+        <div className="empty-state bg-white p-12 rounded-[2rem] border border-[#E7E7E2] shadow-sm max-w-md w-full flex flex-col items-center text-center">
+          <div className="empty-icon w-16 h-16 bg-[#1F5F2C]/5 rounded-full flex items-center justify-center text-[#1F5F2C] mb-6">
+            <LucideIcons.Lock className="w-8 h-8" />
+          </div>
+          <p className="empty-title text-[#667064] text-[14px] font-bold mb-6">سجّل دخولك لعرض محتواك</p>
+          <Link 
+            to="/login" 
+            className="px-8 py-3 bg-[#1F5F2C] text-white rounded-full font-bold text-[14px] hover:bg-[#15411e] active:scale-95 transition-all shadow-sm"
+          >
+            تسجيل الدخول
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const kpis = [
     { label: 'إجمالي المبيعات', value: '142,500 ر.س', trend: '+12.5%', icon: <LucideIcons.TrendingUp className="w-6 h-6"/>, color: 'text-green-600', bg: 'bg-green-50' },
@@ -149,6 +170,22 @@ export const SupplierDashboard = () => {
           </div>
         );
       case 'المنتجات':
+        if (products.length === 0) {
+          return (
+            <div className="empty-state bg-white p-12 rounded-[2rem] border border-[#E7E7E2] shadow-sm flex flex-col items-center justify-center text-center">
+              <div className="empty-icon w-16 h-16 bg-[#1F5F2C]/5 rounded-full flex items-center justify-center text-[#1F5F2C] mb-6">
+                <LucideIcons.Package className="w-8 h-8" />
+              </div>
+              <p className="empty-title text-[#667064] text-[14px] font-bold mb-6">لا توجد منتجات معروضة حالياً</p>
+              <button 
+                onClick={() => setIsAddProductOpen(true)}
+                className="px-8 py-3 bg-[#1F5F2C] text-white rounded-full font-bold text-[14px] hover:bg-[#15411e] active:scale-95 transition-all shadow-sm"
+              >
+                إضافة منتج جديد
+              </button>
+            </div>
+          );
+        }
         return (
           <div className="bg-white rounded-[2.5rem] shadow-sm border border-[#E7E7E2] p-8 animate-in fade-in duration-500">
             <div className="flex justify-between items-center mb-8">

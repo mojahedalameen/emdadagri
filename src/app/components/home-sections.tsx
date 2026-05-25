@@ -257,28 +257,28 @@ export const TechnicalSupport = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">الاسم الكريم</label>
+                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">الاسم الكامل</label>
                     <input 
                       type="text" 
                       required
-                      placeholder="أدخل اسمك بالكامل"
+                      placeholder="أدخل اسمك الكامل"
                       className="w-full px-4 py-3 bg-[#F7F8F5] border border-[#E7E7E2] rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right text-[14px]"
                     />
                   </div>
                   <div className="space-y-1.5 relative">
-                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">نوع الاستفسار</label>
-                    <select className="w-full px-4 py-3 bg-[#F7F8F5] border border-[#E7E7E2] rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right appearance-none text-[14px] cursor-pointer">
-                      <option value="farmer">مزارع / صاحب مشروع</option>
-                      <option value="supplier">مورد / شريك أعمال</option>
-                      <option value="other">استفسار عام</option>
+                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">نوع الحساب</label>
+                    <select required className="w-full px-4 py-3 bg-[#F7F8F5] border border-[#E7E7E2] rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right appearance-none text-[14px] cursor-pointer">
+                      <option value="">اختر نوع الحساب</option>
+                      <option value="farmer">مزارع</option>
+                      <option value="supplier">مورد</option>
                     </select>
                     <LucideIcons.ChevronDown className="absolute left-4 bottom-4 w-4 h-4 text-[#667064] pointer-events-none" />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">الرسالة / تفاصيل الاستفسار</label>
+                    <label className="text-[13px] font-bold text-[#1D2A1F] block mr-2">الرسالة أو الاستفسار</label>
                     <textarea 
                       required
-                      placeholder="كيف يمكننا مساعدتك اليوم؟"
+                      placeholder="اكتب استفسارك هنا..."
                       rows={3}
                       className="w-full px-4 py-3 bg-[#F7F8F5] border border-[#E7E7E2] rounded-xl focus:bg-white focus:border-[#1F5F2C] outline-none transition-all text-right resize-none text-[14px]"
                     />

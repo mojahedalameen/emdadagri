@@ -13,6 +13,7 @@ export const SupplierLogin = () => {
     // Mock login delay
     setTimeout(() => {
       setLoading(false);
+      localStorage.setItem("isLoggedIn", "true");
       navigate('/supplier-dashboard');
     }, 1500);
   };

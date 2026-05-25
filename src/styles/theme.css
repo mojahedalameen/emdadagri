@@ -48,3 +48,39 @@ html, body, #root {
   background-color: #F7F8F5;
   color: #1D2A1F;
 }
+
+/* 1. منع تحرك الصفحة الخلفية عند فتح الـ Modal */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* 2. السماح بالتمرير داخل الـ Modal فقط */
+.modal-content {
+  overflow-y: auto;
+  max-height: 85vh;
+}
+
+/* 3. Fallback State للأقسام الفارغة */
+.empty-state {
+  background-color: #F9FAFB; /* bg-gray-50 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  text-align: center;
+  border-radius: 1.5rem;
+  width: 100%;
+}
+
+.empty-icon {
+  margin-bottom: 16px;
+  color: #9CA3AF; /* color-text-muted / gray-400 */
+}
+
+.empty-title {
+  color: #6B7280; /* color-text-muted */
+  font-size: 14px; /* --text-sm */
+  margin-bottom: 24px;
+  font-weight: bold;
+}

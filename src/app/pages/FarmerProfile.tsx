@@ -1,10 +1,11 @@
-import React from 'react';
-import { User, MapPin, CreditCard, Globe, HelpCircle, LogOut, ChevronLeft, Sprout } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import React, { useState } from 'react';
+import { User, MapPin, CreditCard, Globe, HelpCircle, LogOut, ChevronLeft, Sprout, Lock } from 'lucide-react';
+import { useNavigate, Link } from 'react-router';
 import { toast } from 'sonner';
 
 export const FarmerProfile = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem("isLoggedIn") === "true");
 
   const menuItems = [
     { icon: MapPin, label: 'العناوين المحفوظة', value: 'القصيم' },
@@ -18,6 +19,8 @@ export const FarmerProfile = () => {
       action: {
         label: 'تسجيل الخروج',
         onClick: () => {
+          localStorage.removeItem("isLoggedIn");
+          setIsLoggedIn(false);
           navigate('/');
         }
       },
@@ -26,6 +29,25 @@ export const FarmerProfile = () => {
       }
     });
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div className="flex flex-col items-center justify-center p-12 min-h-[60vh] bg-[#F7F8F5] font-sans" dir="rtl">
+        <div className="empty-state bg-white p-12 rounded-[2rem] border border-[#E7E7E2] shadow-sm max-w-md w-full flex flex-col items-center text-center">
+          <div className="empty-icon w-16 h-16 bg-[#1F5F2C]/5 rounded-full flex items-center justify-center text-[#1F5F2C] mb-6">
+            <Lock className="w-8 h-8" />
+          </div>
+          <p className="empty-title text-[#667064] text-[14px] font-bold mb-6">سجّل دخولك لعرض محتواك</p>
+          <Link 
+            to="/login" 
+            className="px-8 py-3 bg-[#1F5F2C] text-white rounded-full font-bold text-[14px] hover:bg-[#15411e] active:scale-95 transition-all shadow-sm"
+          >
+            تسجيل الدخول
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full bg-[#F8F9FA] font-sans p-5 pb-8">
