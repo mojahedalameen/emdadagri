@@ -218,7 +218,7 @@ export const TechnicalSupport = () => {
                 </div>
                 <div>
                   <p className="text-[12px] text-[#667064] mb-0.5">الرقم الموحد</p>
-                  <p className="text-[15px] font-bold text-[#1D2A1F] tracking-wide">920000000</p>
+                  <p className="text-[15px] font-bold text-[#1D2A1F] tracking-wide">920004562</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 group">
