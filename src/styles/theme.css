@@ -1,0 +1,50 @@
+@theme {
+  --color-emdad-green-primary: #1F5F2C;
+  --color-emdad-green-secondary: #2F7A3E;
+  --color-emdad-gold: #C8A646;
+  --color-emdad-bg: #F7F8F5;
+  --color-emdad-surface: #FFFFFF;
+  --color-emdad-border: #E7E7E2;
+  --color-emdad-text-primary: #1D2A1F;
+  --color-emdad-text-secondary: #667064;
+  
+  --font-sans: "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* Reset & Preflight are handled by Tailwind v4 */
+
+/* Custom App Styles */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-ticker {
+  display: inline-flex;
+  animation: ticker 120s linear infinite;
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 20px);
+}
+
+/* Hide Scrollbars Everywhere */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Force IBM Plex Sans Arabic globally */
+html, body, #root {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  background-color: #F7F8F5;
+  color: #1D2A1F;
+}
