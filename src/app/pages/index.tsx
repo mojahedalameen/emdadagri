@@ -12,6 +12,7 @@ import * as LucideIcons from "lucide-react";
 import { Link, useParams } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { SimpleFormModal } from "../components/simple-form-modal";
+import { getAgriImageUrl, handleImageError } from "../utils/image-helper";
 
 import wheatSeeds from "../../assets/wheat_seeds.png";
 import organicFertilizer from "../../assets/organic_fertilizer.png";
@@ -240,8 +241,14 @@ export const Consultations = () => {
       )}
 
       <div className="flex items-center gap-6 mb-8 mt-4">
-         <div className="w-24 h-24 bg-[#1F5F2C]/5 rounded-full flex items-center justify-center border-4 border-white shadow-md shrink-0 group-hover:scale-105 transition-transform">
-            <LucideIcons.User2 className="w-12 h-12 text-[#1F5F2C]" />
+         <div className="w-24 h-24 bg-[#f0f4f0] rounded-full overflow-hidden border-4 border-white shadow-md shrink-0 group-hover:scale-105 transition-transform">
+            <img 
+              src={getAgriImageUrl('crop')} 
+              alt={advisor.name}
+              loading="lazy"
+              onError={handleImageError}
+              className="w-full h-full object-cover"
+            />
          </div>
          <div>
             <h3 className="text-[22px] font-bold text-[#1D2A1F] group-hover:text-[#1F5F2C] transition-colors">
@@ -397,11 +404,15 @@ export const Marketplace = () => {
                   key={product.id}
                   className="premium-card overflow-hidden flex flex-col group"
                 >
-                  <div className={`h-48 flex items-center justify-center relative ${styles.bg} transition-colors duration-500`}>
-                    <div className="w-16 h-16 rounded-2xl bg-white border border-[#E7E7E2]/60 shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                      {styles.icon}
-                    </div>
-                    <div className="absolute top-4 right-4 bg-[#1F5F2C] text-white px-3 py-1 rounded-full text-[12px] font-bold shadow-md">
+                  <div className="h-48 relative overflow-hidden bg-[#f0f4f0]">
+                    <img 
+                      src={getAgriImageUrl(product.category === 'بذور' ? 'seeds' : product.category === 'أسمدة' ? 'fertilizer' : product.category === 'مبيدات' ? 'product' : product.category === 'ري' ? 'irrigation' : 'product')} 
+                      alt={product.name}
+                      loading="lazy"
+                      onError={handleImageError}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 right-4 bg-[#1F5F2C] text-white px-3 py-1 rounded-full text-[12px] font-bold shadow-md z-10">
                       {product.category}
                     </div>
                   </div>
@@ -479,8 +490,14 @@ export const Suppliers = () => {
               key={i}
               className="p-8 border border-[#E7E7E2] rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 active:scale-[0.99] transition-all flex flex-col items-center text-center group bg-[#F7F8F5]/50"
             >
-              <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mb-8 border border-[#E7E7E2] shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                <LucideIcons.Building2 className="w-12 h-12 text-[#C8A646]" />
+              <div className="w-20 h-20 bg-[#f0f4f0] rounded-2xl overflow-hidden mb-8 border border-[#E7E7E2] shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform flex items-center justify-center">
+                <img 
+                  src={getAgriImageUrl('warehouse')} 
+                  alt={company.name}
+                  loading="lazy"
+                  onError={handleImageError}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F5F2C]/10 rounded-full mb-4">

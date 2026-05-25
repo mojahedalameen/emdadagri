@@ -4,6 +4,7 @@ import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { SimpleFormModal } from './simple-form-modal';
+import { getAgriImageUrl, handleImageError } from '../utils/image-helper';
 
 // Import local premium assets
 import heroDatePalms from '../../assets/hero_date_palms.png';
@@ -477,11 +478,15 @@ export const MarketplaceGrid = () => {
                 key={product.id}
                 className="group flex flex-col premium-card overflow-hidden"
               >
-                <div className={`h-40 flex items-center justify-center relative ${styles.bg} transition-colors duration-500`}>
-                  <div className="w-16 h-16 rounded-2xl bg-white border border-[#E7E7E2]/60 shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                    {styles.icon}
-                  </div>
-                  <div className="absolute top-3 right-3 bg-[#1F5F2C] text-white px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-md">
+                <div className="h-40 relative overflow-hidden bg-[#f0f4f0]">
+                  <img 
+                    src={getAgriImageUrl(product.category === 'بذور' ? 'seeds' : product.category === 'أسمدة' ? 'fertilizer' : product.category === 'مبيدات' ? 'product' : product.category === 'ري' ? 'irrigation' : 'product')} 
+                    alt={product.name}
+                    loading="lazy"
+                    onError={handleImageError}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 right-3 bg-[#1F5F2C] text-white px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-md z-10">
                     {product.category}
                   </div>
                 </div>
